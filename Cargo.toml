@@ -7,7 +7,7 @@ license = "MIT OR Apache-2.0"
 keywords = ["edi","x12","serde"]
 repository = "https://github.com/apimeister/serde_x12/"
 documentation = "https://docs.rs/serde_x12/"
-description = "Bindings for the ANSI X12 EDI definitions"
+description = "A Serde for ANSI X12."
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
