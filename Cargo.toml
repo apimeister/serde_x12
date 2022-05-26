@@ -1,0 +1,13 @@
+[package]
+name = "serde_x12"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jens Walter <jens@apimeister.com>"]
+license = "MIT OR Apache-2.0"
+keywords = ["edi","x12","serde"]
+repository = "https://github.com/apimeister/serde_x12/"
+documentation = "https://docs.rs/serde_x12/"
+description = "Bindings for the ANSI X12 EDI definitions"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
