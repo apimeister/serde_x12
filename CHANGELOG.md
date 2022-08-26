@@ -1,8 +1,7 @@
-# 0.2.0 2022-05-27
+# 0.2.0 2022-05-30
 
-* make logging optional
-* update readme
+* add deserialization of structs
 
-# 0.1.0 2022-05-26
+# 0.1.0 2022-05-27
 
 * initial version
