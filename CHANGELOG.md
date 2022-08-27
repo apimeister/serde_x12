@@ -1,3 +1,8 @@
+# 0.3.0 2022-08-27
+
+* improve serialization/deserialization
+* add reflection trait
+
 # 0.2.0 2022-05-30
 
 * add deserialization of structs

@@ -1,10 +1,8 @@
 use crate::{Error, Path, PathOperation, Reflect};
 use json_dotpath::DotPaths;
 use serde::de::DeserializeOwned;
-use serde::{Deserialize, Serialize};
 use serde_json::Map;
 use serde_json::Value;
-use std::collections::HashMap;
 
 pub fn from_str<T>(s: &str) -> Result<T, Error>
 where
@@ -14,40 +12,46 @@ where
 
     //split on segment
     let lines = s.split('~').collect::<Vec<&str>>();
-    let mut last_path = Path::default();
+    let mut current_path = Path::default();
+    let mut last_path = current_path.clone();
     for line in lines {
         //parse single line
         let parts = line.split('*').collect::<Vec<&str>>();
         let segment_name = parts[0];
+        //skip emtpy lines
+        if segment_name.len() == 0 {
+            continue;
+        }
         // find path for segment
         println!("segment: {segment_name}");
         let name = T::get_type_name();
-        last_path = T::get_path(&last_path, segment_name);
-        let leaf = last_path.is_leaf();
-        println!("type_name: {name} {} {leaf}", last_path);
+        current_path = T::get_path(&current_path, segment_name, &last_path);
+        let leaf = current_path.is_leaf();
+        println!("type_name: {name} {} {leaf}", current_path);
         //process value
         for (idx, part) in parts.iter().enumerate() {
             //skip first entry, because it is the segment name
             if idx == 0 {
                 continue;
             }
-            let path_name = format!("{last_path}._{:02}",idx);
-            println!("{path_name}: {part}");
-            _ = json_value.dot_set(&path_name[1..], Value::String(part.to_string()));
+            let path_name = format!("{current_path}._{:02}",idx);
+            // only set value if it is not empty
+            if part.len() > 0 {
+                _ = json_value.dot_set(&path_name[1..], Value::String(part.to_string()));
+            }
         }
-        // _ = json_value.dot_set(&format!("{}",name), Value::String(val.to_string()));
-        // println!("{segment_name} {name} => {val}");
+        last_path = current_path.clone();
         if leaf {
-            last_path.elem.pop();
+            current_path.elem.pop();
         }
-        match &last_path.next_op {
+        match &current_path.next_op {
             Some(PathOperation::Pop) => {
-                last_path = last_path.pop();
-                last_path.next_op = None;
+                current_path = current_path.pop();
+                current_path.next_op = None;
             }
             Some(PathOperation::Push(item)) => {
-                last_path = last_path.push_item(item);
-                last_path.next_op = None;
+                current_path = current_path.push_item(item);
+                current_path.next_op = None;
             }
             None => {}
         };

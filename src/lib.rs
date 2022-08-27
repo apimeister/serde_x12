@@ -85,6 +85,5 @@ impl Default for PathItem {
 
 pub trait Reflect {
     fn get_type_name() -> String;
-    fn get_path(last_path: &Path, next_segment: &str) -> Path;
-    fn is_leaf() -> bool;
+    fn get_path(current_path: &Path, next_segment: &str, last_path: &Path) -> Path;
 }
