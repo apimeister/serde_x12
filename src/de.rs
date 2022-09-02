@@ -17,7 +17,7 @@ where
     for line in lines {
         //parse single line
         let parts = line.split('*').collect::<Vec<&str>>();
-        let segment_name = parts[0];
+        let segment_name = parts[0].trim();
         //skip emtpy lines
         if segment_name.len() == 0 {
             continue;
