@@ -1,6 +1,6 @@
 # serde_x12
 
-A Serde for ANSI X12.
+A Serde for ASC X12 EDI documents.
 
 This crate is a work in progress. The required X12 definitions are hosted in the `x12-types` crate. 
 
