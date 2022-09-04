@@ -23,10 +23,13 @@ where
             continue;
         }
         // find path for segment
+        #[cfg(feature = "debug")]
         println!("segment: {segment_name}");
+        #[cfg(feature = "debug")]
         let name = T::get_type_name();
         current_path = T::get_path(&current_path, segment_name, &last_path);
         let leaf = current_path.is_leaf();
+        #[cfg(feature = "debug")]
         println!("type_name: {name} {} {leaf}", current_path);
         //process value
         for (idx, part) in parts.iter().enumerate() {
@@ -57,6 +60,7 @@ where
         };
     }
     let str = serde_json::to_string_pretty(&json_value).unwrap();
+    #[cfg(feature = "debug")]
     println!("final json: {} ", str);
     let result: Result<T, _> = serde_json::from_str(str.as_str());
     match result {
