@@ -1,3 +1,7 @@
+# 0.4.0 2022-11-18
+
+* clippy
+
 # 0.3.0 2022-08-27
 
 * improve serialization/deserialization

@@ -23,7 +23,11 @@ pub struct Path {
 impl Path {
     pub fn push(&self, name: String, vec_position: Option<u64>, leaf: bool) -> Path {
         let mut x = self.clone();
-        x.elem.push(PathItem { name, vec_position, leaf });
+        x.elem.push(PathItem {
+            name,
+            vec_position,
+            leaf,
+        });
         x
     }
     pub fn push_item(&self, item: &PathItem) -> Path {
@@ -37,7 +41,7 @@ impl Path {
         x
     }
     pub fn is_leaf(&self) -> bool {
-        if self.elem.len() == 0 {
+        if self.elem.is_empty() {
             true
         } else {
             self.elem.last().unwrap().leaf

@@ -19,7 +19,7 @@ where
         let parts = line.split('*').collect::<Vec<&str>>();
         let segment_name = parts[0].trim();
         //skip emtpy lines
-        if segment_name.len() == 0 {
+        if segment_name.is_empty() {
             continue;
         }
         // find path for segment
@@ -37,9 +37,9 @@ where
             if idx == 0 {
                 continue;
             }
-            let path_name = format!("{current_path}._{:02}",idx);
+            let path_name = format!("{current_path}._{:02}", idx);
             // only set value if it is not empty
-            if part.len() > 0 {
+            if !part.is_empty() {
                 _ = json_value.dot_set(&path_name[1..], Value::String(part.to_string()));
             }
         }
