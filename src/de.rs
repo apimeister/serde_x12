@@ -37,7 +37,7 @@ where
             if idx == 0 {
                 continue;
             }
-            let path_name = format!("{current_path}._{:02}", idx);
+            let path_name = format!("{current_path}.{:02}", idx);
             // only set value if it is not empty
             if !part.is_empty() {
                 _ = json_value.dot_set(&path_name[1..], Value::String(part.to_string()));

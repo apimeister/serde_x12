@@ -1,3 +1,7 @@
+# 0.5.0 2022-11-20
+
+* remove '_' from serialized format
+
 # 0.4.0 2022-11-18
 
 * clippy
