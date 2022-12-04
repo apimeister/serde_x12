@@ -395,11 +395,8 @@ impl<'a> ser::SerializeStruct for &'a mut Serializer {
     }
 
     fn skip_field(&mut self, _key: &'static str) -> Result<(), Self::Error> {
-        match self.output.last_mut() {
-            Some(el) => {
-                el.push(None);
-            }
-            None => {}
+        if let Some(el) = self.output.last_mut() {
+            el.push(None);
         };
         #[cfg(feature = "debug")]
         println!("skip_field: {}", _key);
