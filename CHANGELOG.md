@@ -1,3 +1,7 @@
+# 0.6.0 2022-12-**
+
+* support skipped fields
+
 # 0.5.0 2022-11-20
 
 * remove '_' from serialized format

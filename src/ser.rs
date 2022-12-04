@@ -390,13 +390,23 @@ impl<'a> ser::SerializeStruct for &'a mut Serializer {
     {
         #[cfg(feature = "debug")]
         println!("serialize_field: {}", _key);
-        // self.output.push(vec![key.to_string()]);
         let _ = value.serialize(&mut **self);
         Ok(())
     }
 
+    fn skip_field(&mut self, _key: &'static str) -> Result<(), Self::Error> {
+        match self.output.last_mut() {
+            Some(el) => {
+                el.push(None);
+            }
+            None => {}
+        };
+        #[cfg(feature = "debug")]
+        println!("skip_field: {}", _key);
+        Ok(())
+    }
+
     fn end(self) -> Result<Self::Ok, Self::Error> {
-        //TODO end of struct
         Ok(())
     }
 }
