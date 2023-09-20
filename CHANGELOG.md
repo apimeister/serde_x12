@@ -1,3 +1,7 @@
+# 0.7.0 2022-09-20
+
+* switch from reflection based deserializer to nom
+
 # 0.6.0 2022-12-04
 
 * support skipped fields
