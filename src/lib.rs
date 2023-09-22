@@ -7,6 +7,10 @@ use std::fmt::Display;
 pub use de::*;
 pub use error::*;
 pub use ser::*;
+#[cfg(test)]
+mod test_de;
+#[cfg(test)]
+mod test_ser;
 
 #[derive(Debug, Clone)]
 pub enum PathOperation {
