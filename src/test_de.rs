@@ -1,4 +1,4 @@
-use x12_types::{v004010::_310, util::Parser};
+use x12_types::{util::Parser, v004010::_310};
 
 #[test]
 fn test_310_parse() {

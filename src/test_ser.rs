@@ -1,5 +1,4 @@
-use x12_types::v004010::{*};
-
+use x12_types::v004010::*;
 
 #[test]
 fn test_301() {
