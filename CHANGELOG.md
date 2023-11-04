@@ -1,3 +1,7 @@
+# 0.7.2 2022-11-04
+
+* update dependencies
+
 # 0.7.0 2022-09-20
 
 * switch from reflection based deserializer to nom
