@@ -11,7 +11,7 @@ description = "A Serde for ASC X12 EDI documents."
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
-x12-types = { version = "0.8" }
+x12-types = { version = "0.9" }
 nom = "8"
 
 [features]
